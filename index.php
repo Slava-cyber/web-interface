@@ -9,7 +9,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang='ru'>
 <head>
@@ -18,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="index">
-    <!-- Форма авторизации -->
+    <!-- Authorization form -->
     <form>
         <label>Логин</label>
         <input type="text" name="login" placeholder="Введите свой логин">

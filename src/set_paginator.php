@@ -1,14 +1,6 @@
 <?php
     session_start();
-
     require_once 'check/check_admin_level_deep.php';
-    /*if ($_SESSION['user']) {
-        if (!$_SESSION['user']['admin_status']) {
-            header('Location: ../user_profile.php');
-        }
-    } else {
-        header('Location: ../index.php');
-    }*/
 
     $on_page = $_POST['on_page'];
 

@@ -58,10 +58,9 @@ button {
 }
 
 .table {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 th,
@@ -90,20 +89,74 @@ td {
     text-align: center;
 }
 
+.profile {
+    width: auto;
+    display: block;
+}
+
+.log {
+    max-width: 1264px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: right;
+}
+
+.logout {
+    float: right;
+    font-size: 150%;
+    font-style: oblique;
+    font-family: sans-serif;
+    color: #252323;
+}
+
+.user_profile_container {
+    max-width: 664px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_container {
+    max-width: 1264px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.user_profile_container p {
+    text-align: center;
+}
+
+.user_profile_container img {
+    height: 60%;
+    width: 60%;
+    margin: 20px auto;
+}
+
+.div {
+    min-width: 640px;
+    max-width: 1264px;
+    display: block;
+    margin: 0 auto;
+}
+
 .forms {
     display: flex;
-    align-items: flex-start;
-    height: 250px;
-    width: 100%;
-    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 230px;
+    box-sizing: border-box;
 }
 
-.forms .div_paginator {
-    align-items: flex-end;
+.form_sort {
+    display: flex;
+    flex-direction: column;
 }
 
-.div_sort {
-    margin-right: 100px;
+.form_paginator {
+    display: flex;
+    flex-direction: column;
 }
 
 .add_user {
@@ -117,19 +170,8 @@ td {
     cursor: pointer;
 }
 
-.log {
-    width: 90%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.logout {
-    float: right;
-    font-size: 150%;
-    letter-spacing: 5px;
-    font-style: oblique;
-    font-family: sans-serif;
-    color: #252323;
+nav {
+    float: inline-end;
 }
 
 ul {
@@ -167,24 +209,7 @@ ul li a:hover {
     color: seashell;
 }
 
-.form_sort {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.form_paginator {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
 .form label {
-    font-size: 100%;
-    font-family: sans-serif;
-}
-
-.user-profile p {
     font-size: 100%;
     font-family: sans-serif;
 }

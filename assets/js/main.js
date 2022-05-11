@@ -1,4 +1,4 @@
-/* Авторизация */
+/* Authorization */
 
 $('.login-button').click(function(event) {
     event.preventDefault();
@@ -36,7 +36,7 @@ $('.login-button').click(function(event) {
     });
 });
 
-/* Регистрация */
+/* Registration */
 
 $('.register-button').click(function(event) {
 
@@ -81,7 +81,7 @@ $('.register-button').click(function(event) {
     })
 });
 
-/*Изменение */
+/*User's data update */
 $('.change-button').click(function(event) {
 
     event.preventDefault();
@@ -127,7 +127,7 @@ $('.change-button').click(function(event) {
     })
 });
 
-/* сортировка */
+/* Sorting */
 
 
 $('.sort-button').click(function(event) {
@@ -157,7 +157,7 @@ $('.sort-button').click(function(event) {
     })
 });
 
-/* Установка разбиения на странице */
+/* Paginator */
 
 $('.paginator-button').click(function(event) {
 

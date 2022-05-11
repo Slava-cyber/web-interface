@@ -1,19 +1,9 @@
 <?php
     session_start();
     require_once 'src/check/check_admin.php';
-    
-    /*session_start();
-    if ($_SESSION['user']) {
-        if (!$_SESSION['user']['admin_status']) {
-            header('Location: user_profile.php');
-        }
-    } else {
-        header('Location: index.php');
-    }*/
-    
     require_once 'config/connect.php';
+    
     $id = $_GET['id'];
-
     $url_get = $_SERVER['QUERY_STRING'];
 
     $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$id'");
@@ -37,7 +27,7 @@
 <html lang='ru'>
 <head>
     <meta charset="UTF-8">
-    <title>Профиль пользователя</title>
+    <title>Профиль пользователя <?= $login ?></title>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>

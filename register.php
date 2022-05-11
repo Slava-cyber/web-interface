@@ -12,11 +12,11 @@
 <html lang='ru'>
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация и регистрация</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="index">
-    <!-- Форма регистрации -->
+    <!-- Registration form -->
     <form>
         <label>Имя</label>
         <input type="hidden" name="url" value="<?= $url_referer ?>">
