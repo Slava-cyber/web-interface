@@ -30,13 +30,26 @@
 
     $password = md5($password);
 
-    $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+    $sql =  "SELECT * FROM `users` WHERE `login` = ? AND `password` = ?";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, 'ss', $login, $password);
+    mysqli_stmt_execute($stmt);
+    $check_user = mysqli_stmt_get_result($stmt);
+    
+    //$check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
 
     if (mysqli_num_rows($check_user) > 0) {
 
         $user = mysqli_fetch_assoc($check_user);
         
-        $check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$login'");
+        
+        $sql =  "SELECT * FROM `admin` WHERE `login` = ?";
+        $stmt = mysqli_prepare($connect, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $login);
+        mysqli_stmt_execute($stmt);
+        $check_admin = mysqli_stmt_get_result($stmt);
+        
+        //$check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$login'");
         if (mysqli_num_rows($check_admin) > 0) {
             $admin_status = true;
 

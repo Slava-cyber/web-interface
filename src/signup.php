@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    if (!$_SESSION['user']) {
+    if ($_SESSION['user']) {
         header('Location: ../index.php');
     }
     
@@ -15,7 +15,14 @@
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
     
-    $check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
+    // protection against sql injection using prepared statements
+    $sql = "SELECT * FROM `users` WHERE `login` = ?";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $login);
+    mysqli_stmt_execute($stmt);
+    $check_login = mysqli_stmt_get_result($stmt);
+
+    //$check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
     
     if (mysqli_num_rows($check_login) > 0) {
         $response = [
@@ -84,10 +91,18 @@
 
     if ($password === $password_confirm) {
         $password = md5($password);
-        mysqli_query($connect, "INSERT INTO `users` 
+
+        $sql = "INSERT INTO `users` 
+        (`id`, `name`, `surname`, `birth_date`, `gender`, `login`, `password`) 
+        VALUES (NULL, ?, ?, '$birth_date', ?, ?, ?)";
+        $stmt = mysqli_prepare($connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'sssss', $name, $surname, $gender, $login, $password);
+        mysqli_stmt_execute($stmt);
+
+        /*mysqli_query($connect, "INSERT INTO `users` 
         (`id`, `name`, `surname`, `birth_date`, `gender`, `login`, `password`) 
         VALUES (NULL, '$name', '$surname', '$birth_date', '$gender', '$login', '$password')");
-
+*/
         $response = [
             "status" => true,
             "message" => 'Регистрация прошла успешно'

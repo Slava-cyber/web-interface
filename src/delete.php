@@ -4,7 +4,9 @@
     require_once 'check/check_admin_level_deep.php';
     require_once '../config/connect.php';
 
-    $id = $_GET['id'];
+    $url_referer = $_SERVER['HTTP_REFERER'];
+    
+    $id = (int)$_GET['id'];
 
     $url_get = $_SERVER['QUERY_STRING'];
 
@@ -13,5 +15,5 @@
         mysqli_query($connect, "DELETE FROM `users` WHERE `id` = '$id'");
     }
 
-    header('Location: ../profile.php?'.$url_get);
+    header('Location: '.$url_referer);
 ?>

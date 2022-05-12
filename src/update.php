@@ -4,7 +4,7 @@
     require_once 'check/check_admin_level_deep.php';
     require_once '../config/connect.php';
     
-    $id = $_POST['id'];
+    $id = (int)$_POST['id'];
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $birth_date = $_POST['birth_date'];
@@ -19,8 +19,12 @@
         header('Location: ../profile.php');
     }
 
-
-    $check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND (`id` < '$id' OR `id` > '$id')");
+    $sql = "SELECT * FROM `users` WHERE `login` = ? AND (`id` < '$id' OR `id` > '$id')";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $login);
+    mysqli_stmt_execute($stmt);
+    $check_login = mysqli_stmt_get_result($stmt);
+    //$check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND (`id` < '$id' OR `id` > '$id')");
     //$check_login_another_id = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
     if (mysqli_num_rows($check_login) > 0) {
         $response = [
@@ -89,11 +93,19 @@
 
     if ($password === $password_confirm) {
         $password = md5($password);
-        mysqli_query($connect, "UPDATE `users`
+        $sql = "UPDATE `users`
+        SET `name` = ?, `surname` = ?, `birth_date` = '$birth_date',
+        `gender` = ?, `login` = ?,
+        `password` = ? WHERE `users`.`id` = ?";
+        $stmt = mysqli_prepare($connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'sssssi', $name, $surname, $gender, $login, $password, $id);
+        mysqli_stmt_execute($stmt);        
+
+        /*mysqli_query($connect, "UPDATE `users`
         SET `name` = '$name', `surname` = '$surname', `birth_date` = '$birth_date',
         `gender` = '$gender', `login` = '$login',
         `password` = '$password' WHERE `users`.`id` = '$id'");
-
+        */
 
         $response = [
             "status" => true,

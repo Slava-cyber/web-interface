@@ -4,14 +4,15 @@
     require_once 'src/check/check_admin.php';
     require_once 'config/connect.php';
     $url_referer = $_SERVER['HTTP_REFERER'];
-    $user_id = $_GET["id"];
+    // simple protection against SQL injection with integer parameters
+    $user_id = (int)$_GET["id"];
     
-    $check_id = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
-    if (!(mysqli_num_rows($check_id) > 0)) {
+    $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
+    if (!(mysqli_num_rows($user) > 0)) {
         header('Location: profile.php');
     }
 
-    $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
+    // $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
     $user = mysqli_fetch_assoc($user);
 ?>
 

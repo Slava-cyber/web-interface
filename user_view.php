@@ -6,7 +6,13 @@
     $id = $_GET['id'];
     $url_get = $_SERVER['QUERY_STRING'];
 
-    $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$id'");
+    // protection against sql injection using prepared statements
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $_GET['id']);
+    mysqli_stmt_execute($stmt);
+    $user = mysqli_stmt_get_result($stmt);
+
     if (!(mysqli_num_rows($user) > 0)) {
         header('Location: profile.php?'.$url_get);
     }

@@ -6,8 +6,9 @@
 
     $sort_type = $_GET['sort_type'];
     $sort_dir = $_GET['sort_dir'];
-    $current_page = $_GET['page'];
-    $on_page = $_GET['on_page'];
+    // simple protection against SQL injection with integer parameters
+    $current_page = (int)$_GET['page'];
+    $on_page = (int)$_GET['on_page'];
 
     // block check correct get parameters
     if (!isset($on_page) || $on_page < 1 || $on_page > 10) {
@@ -148,7 +149,12 @@
                         <td><a href="src/delete.php?id=<?= $users[$i][0] ?>">Удалить</a></td>
                         <?php
                             $check_login = $users[$i][5]; 
-                            $check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$check_login'");
+                            $sql = "SELECT * FROM `admin` WHERE `login` = ?";
+                            $stmt = mysqli_prepare($connect, $sql);
+                            mysqli_stmt_bind_param($stmt, 's', $check_login);
+                            mysqli_stmt_execute($stmt);
+                            $check_admin = mysqli_stmt_get_result($stmt); 
+                            //$check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$check_login'");
                             if (mysqli_num_rows($check_admin) > 0) {
                                 ?>
                                 <td>Admin</td>
