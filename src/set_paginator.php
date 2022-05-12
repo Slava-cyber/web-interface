@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'check/check_admin_level_deep.php';
+    require_once 'check/check_admin.php';
 
     $on_page = $_POST['on_page'];
 

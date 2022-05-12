@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    if ($_SESSION['user']) {
+    if (!$_SESSION['user']['admin_status'] && $_SESSION['user']) {
         header('Location: ../index.php');
     }
     
@@ -37,6 +37,7 @@
     }
 
     $error = [];
+    $message = 'Проверьте правильность полей';
 
     if ($name == '') {
         $error[] = 'name';
@@ -56,16 +57,33 @@
 
     if ($password == '') {
         $error[] = 'password';
+        //$message = 'Пароль должен быть более 4 символов';
     }
 
     if ($password_confirm == '') {
         $error[] = 'password_confirm';
+       // $message = 'Пароль должен быть более 4 символов';
     }
-
+    
     if (!empty($error)) {
         $response = [
             "status" => false,
-            "message" => 'Проверьте правильность полей',
+            "message" => $message,
+            "type" => 1,
+            "fields" => $error
+        ];
+
+        echo json_encode($response); 
+        die();
+    }
+
+    if (strlen($password) < 5 || strlen($password_confirm) < 5) {
+        $error[] = 'password';
+        $error[] = 'password_confirm';
+        $message = 'Пароль должен быть более 4 символов';
+        $response = [
+            "status" => false,
+            "message" => $message,
             "type" => 1,
             "fields" => $error
         ];
@@ -77,7 +95,7 @@
     if ($gender == 1) {
         $gender = 'Мужской';
     } else if ($gender == 2) {
-        $gender = 'женский';
+        $gender = 'Женский';
     } else {
         $response = [
             "status" => false,

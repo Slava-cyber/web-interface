@@ -119,7 +119,7 @@
         </div>
 
         <div class = add_user>
-            <a href="register.php?type=add" class="add">Добавить нового пользователя</a>
+            <a href="register.php" class="add">Добавить нового пользователя</a>
         </div>
 
         <table class="table">

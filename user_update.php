@@ -10,6 +10,7 @@
     $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
     if (!(mysqli_num_rows($user) > 0)) {
         header('Location: profile.php');
+        die();
     }
 
     // $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");

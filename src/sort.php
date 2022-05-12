@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once 'check/check_admin_level_deep.php';
+    require_once 'check/check_admin.php';
     require_once '../config/connect.php';
 
     $sort_type = $_POST['sort_type'];

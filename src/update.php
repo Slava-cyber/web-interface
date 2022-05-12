@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once 'check/check_admin_level_deep.php';
+    require_once 'check/check_admin.php';
     require_once '../config/connect.php';
     
     $id = (int)$_POST['id'];
@@ -17,6 +17,7 @@
     $check_id = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$id'");
     if (!(mysqli_num_rows($check_id) > 0)) {
         header('Location: ../profile.php');
+        die();
     }
 
     $sql = "SELECT * FROM `users` WHERE `login` = ? AND (`id` < '$id' OR `id` > '$id')";
@@ -80,7 +81,7 @@
     if ($gender == 1) {
         $gender = 'Мужской';
     } else if ($gender == 2) {
-        $gender = 'женский';
+        $gender = 'Женский';
     } else {
         $response = [
             "status" => false,
