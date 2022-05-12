@@ -1,19 +1,19 @@
 <?php
     session_start();
 
-    require_once 'src/check/check_admin.php';
-    require_once 'config/connect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/check/check_admin.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/connect.php';
     $url_referer = $_SERVER['HTTP_REFERER'];
+    
     // simple protection against SQL injection with integer parameters
     $user_id = (int)$_GET["id"];
     
     $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
     if (!(mysqli_num_rows($user) > 0)) {
-        header('Location: profile.php');
+        header('Location: /profile.php');
         die();
     }
 
-    // $user = mysqli_query($connect, "SELECT * FROM `users` WHERE `id` = '$user_id'");
     $user = mysqli_fetch_assoc($user);
 ?>
 

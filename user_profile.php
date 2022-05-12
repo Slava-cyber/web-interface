@@ -2,13 +2,12 @@
     session_start();
     if ($_SESSION['user']) {
         if ($_SESSION['user']['admin_status']) {
-            header('Location: profile.php');
+            header('Location: /profile.php');
         }
     } else {
-        header('Location: index.php');
+        header('Location: /index.php');
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang='ru'>

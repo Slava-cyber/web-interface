@@ -1,9 +1,10 @@
 <?php
     session_start();
-    require_once 'check/check_admin.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/check/check_admin.php';
 
     $on_page = $_POST['on_page'];
 
+    // validation
     if (!isset($on_page)) {
         $response = [
             "status" => false,
@@ -25,4 +26,3 @@
 
         echo json_encode($response);
     }
-?>

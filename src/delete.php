@@ -1,7 +1,7 @@
 <?php
     session_start(); 
-    require_once 'check/check_admin.php';
-    require_once '../config/connect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/check/check_admin.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/connect.php';
 
     $url_referer = $_SERVER['HTTP_REFERER'];
     
@@ -15,4 +15,4 @@
     }
 
     header('Location: '.$url_referer);
-?>
+

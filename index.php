@@ -4,7 +4,7 @@
         if ($_SESSION['user']['admin_status']) {
             header('Location: profile.php');
         } else {
-            header('Location: user_profile.php');
+            header('Location: /user_profile.php');
         }
     }
 ?>
@@ -13,7 +13,7 @@
 <html lang='ru'>
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация и регистрация</title>
+    <title>Авторизация</title>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="index">

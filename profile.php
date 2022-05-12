@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require_once 'src/check/check_admin.php';
-    require_once 'config/connect.php ';
-    
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/check/check_admin.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/connect.php';
+
     $sort_type = $_GET['sort_type'];
     $sort_dir = $_GET['sort_dir'];
     // simple protection against SQL injection with integer parameters
@@ -64,7 +64,7 @@
 <html lang='ru'>
 <head>
     <meta charset="UTF-8">
-    <title>Профиль</title>
+    <title>Профиль администратора</title>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
@@ -148,12 +148,14 @@
                         <td><a href="src/delete.php?id=<?= $users[$i][0] ?>">Удалить</a></td>
                         <?php
                             $check_login = $users[$i][5]; 
+                            
                             $sql = "SELECT * FROM `admin` WHERE `login` = ?";
                             $stmt = mysqli_prepare($connect, $sql);
                             mysqli_stmt_bind_param($stmt, 's', $check_login);
                             mysqli_stmt_execute($stmt);
                             $check_admin = mysqli_stmt_get_result($stmt); 
-                            //$check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$check_login'");
+
+                            // Administrator status display
                             if (mysqli_num_rows($check_admin) > 0) {
                                 ?>
                                 <td>Admin</td>

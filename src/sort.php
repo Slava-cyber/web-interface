@@ -1,14 +1,15 @@
 <?php
 
     session_start();
-    require_once 'check/check_admin.php';
-    require_once '../config/connect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/check/check_admin.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/connect.php';
 
     $sort_type = $_POST['sort_type'];
     $sort_dir = $_POST['sort_dir'];
 
     $error = [];
 
+    // validation
     if (!isset($sort_type)) {
         $error[] = 'sort_type';
     }
@@ -31,5 +32,3 @@
 
         echo json_encode($response);
     }
-    
-?>

@@ -4,11 +4,13 @@
         header('Location: /profile.php');
         die();
     }
-    require_once '../config/connect.php';
+
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/connect.php';
 
     $login = $_POST['login'];
     $password = $_POST['password'];
 
+    // validation
     $error = [];
 
     if ($login === '') {
@@ -34,14 +36,13 @@
 
     $password = md5($password);
 
+    // protection against sql injection using prepared statements
     $sql =  "SELECT * FROM `users` WHERE `login` = ? AND `password` = ?";
     $stmt = mysqli_prepare($connect, $sql);
     mysqli_stmt_bind_param($stmt, 'ss', $login, $password);
     mysqli_stmt_execute($stmt);
     $check_user = mysqli_stmt_get_result($stmt);
     
-    //$check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
-
     if (mysqli_num_rows($check_user) > 0) {
 
         $user = mysqli_fetch_assoc($check_user);
@@ -53,7 +54,6 @@
         mysqli_stmt_execute($stmt);
         $check_admin = mysqli_stmt_get_result($stmt);
         
-        //$check_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `login` = '$login'");
         if (mysqli_num_rows($check_admin) > 0) {
             $admin_status = true;
 
@@ -81,10 +81,6 @@
             "admin_status" => $admin_status 
         ];
     
-        //$response = [
-        //    "status" => true
-        //];
-
         echo json_encode($response);
     
     } else {
@@ -96,5 +92,3 @@
 
         echo json_encode($response);
     }
-
-?>

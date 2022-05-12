@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!$_SESSION['user']['admin_status'] && $_SESSION['user']) {
-        header('Location: user_profile.php');
+        header('Location: /user_profile.php');
         die();
     }
 
