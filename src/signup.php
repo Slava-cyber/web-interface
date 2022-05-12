@@ -3,6 +3,7 @@
     
     if (!$_SESSION['user']['admin_status'] && $_SESSION['user']) {
         header('Location: ../index.php');
+        die();
     }
     
     require_once '../config/connect.php';

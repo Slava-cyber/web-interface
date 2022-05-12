@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if ($_SESSION['user']) {
+        header('Location: /profile.php');
+        die();
+    }
     require_once '../config/connect.php';
 
     $login = $_POST['login'];

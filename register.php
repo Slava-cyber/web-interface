@@ -2,6 +2,7 @@
     session_start();
     if (!$_SESSION['user']['admin_status'] && $_SESSION['user']) {
         header('Location: user_profile.php');
+        die();
     }
 
     $url_referer = $_SERVER['HTTP_REFERER'];

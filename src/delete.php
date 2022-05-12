@@ -1,15 +1,5 @@
 <?php
-    session_start();
-    
-    //session_start();
-   /* if ($_SESSION['user']) {
-        if (!$_SESSION['user']['admin_status']) {
-            header('Location: /user_profile.php');
-        }
-    } else {*/
-        //header('Location: ../index.php');
-    //}
-    
+    session_start(); 
     require_once 'check/check_admin.php';
     require_once '../config/connect.php';
 
