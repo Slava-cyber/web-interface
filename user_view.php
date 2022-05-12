@@ -55,11 +55,11 @@
 <?php 
     if ($admin_status) {
         ?>
-        <a href="src/admin/admin_delete.php?login=<?= $login ?>&<?= $url_get ?>">Убрать права администратора</a>
+        <a href="src/admin/admin_delete.php?id=<?= $id ?>&<?= $url_get ?>">Убрать права администратора</a>
         <?php
     } else {
         ?>
-        <a href="src/admin/admin_add.php?login=<?= $login ?>&<?= $url_get ?>">Дать права администратора</a>
+        <a href="src/admin/admin_add.php?id=<?= $id ?>&<?= $url_get ?>">Дать права администратора</a>
         <?php
     }
 ?>

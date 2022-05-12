@@ -1,6 +1,8 @@
 <?php
     session_start();
-
+    require_once 'src/check/check_admin.php';
+    require_once 'config/connect.php ';
+    
     $sort_type = $_GET['sort_type'];
     $sort_dir = $_GET['sort_dir'];
     // simple protection against SQL injection with integer parameters
