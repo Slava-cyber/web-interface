@@ -1,10 +1,12 @@
 <?php
 
-    if (!isset($id)) {
+    // transition protection
+    if (!isset($name)) {
         header('Location: /index.php');
         die();
     }
 
+    // validation of data from 'registration' and 'adding a user' forms
     if (mysqli_num_rows($check_login) > 0) {
         $response = [
             "status" => false,
