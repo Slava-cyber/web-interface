@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 13 2022 г., 03:44
+-- Время создания: Май 13 2022 г., 03:59
 -- Версия сервера: 5.7.29
 -- Версия PHP: 7.2.29
 
@@ -67,7 +67,8 @@ INSERT INTO `users` (`id`, `name`, `surname`, `birth_date`, `gender`, `login`, `
 (27, 'Марья', 'Петровна', '2022-05-01', 'Женский', 'Masha777', 'b0baee9d279d34fa1dfd71aadb908c3f'),
 (29, 'Потенциальный', 'Админ', '2022-05-14', 'Женский', 'admin2', 'b0baee9d279d34fa1dfd71aadb908c3f'),
 (38, 'Новый', 'Пользователь', '2022-05-04', 'Мужской', 'newuser', 'b0baee9d279d34fa1dfd71aadb908c3f'),
-(39, 'Фантазии', 'Не хватает', '2022-05-02', 'Женский', 'test2', 'b0baee9d279d34fa1dfd71aadb908c3f');
+(39, 'Фантазии', 'Не хватает', '2022-05-02', 'Женский', 'test2', 'b0baee9d279d34fa1dfd71aadb908c3f'),
+(43, 'New', 'User', '2019-03-13', 'Женский', 'user_new', 'b0baee9d279d34fa1dfd71aadb908c3f');
 
 --
 -- Индексы сохранённых таблиц
@@ -83,7 +84,8 @@ ALTER TABLE `admin`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -93,7 +95,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
