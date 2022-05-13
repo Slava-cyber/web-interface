@@ -25,7 +25,7 @@
         <label>Фамилия</label>
         <input type="text" name="surname" placeholder="Введите фамилию">
         <label>Дата рождения</label>
-        <input type="date" name="birth_date" placeholder="Выберите дату рождения">
+        <input type="date" name="birth_date" placeholder="Выберите дату рождения" min="1920-01-01" max="2022-05-01">
         <label>Укажите ваш пол</label>
         <div>
             <input id="radio1" name="gender" type="radio" value="1">
